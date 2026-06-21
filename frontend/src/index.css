@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(16, 185, 129, 0.3) transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: rgba(212, 168, 67, 0.3);
+    color: #fff;
+  }
+}
+
+@layer components {
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #d4a843, #f0d78c, #d4a843);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-oasis {
+    background: linear-gradient(135deg, #011e17 0%, #022c22 30%, #064e3b 60%, #047857 100%);
+  }
+
+  .bg-gradient-oasis-dark {
+    background: linear-gradient(180deg, #011e17 0%, #022c22 50%, #064e3b 100%);
+  }
+
+  .card-oasis {
+    background: linear-gradient(145deg, rgba(6, 78, 59, 0.4), rgba(2, 44, 34, 0.6));
+    border: 1px solid rgba(16, 185, 129, 0.15);
+    backdrop-filter: blur(10px);
+  }
+
+  .card-oasis:hover {
+    border-color: rgba(212, 168, 67, 0.4);
+    box-shadow: 0 0 30px rgba(212, 168, 67, 0.1), 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-gold {
+    background: linear-gradient(135deg, #d4a843, #b8912e);
+    color: #011e17;
+    font-weight: 600;
+    padding: 0.875rem 2rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 168, 67, 0.3);
+  }
+
+  .btn-gold:hover {
+    background: linear-gradient(135deg, #f0d78c, #d4a843);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(212, 168, 67, 0.4);
+  }
+
+  .btn-outline-gold {
+    border: 1.5px solid rgba(212, 168, 67, 0.6);
+    color: #d4a843;
+    font-weight: 500;
+    padding: 0.875rem 2rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    background: transparent;
+  }
+
+  .btn-outline-gold:hover {
+    background: rgba(212, 168, 67, 0.1);
+    border-color: #d4a843;
+    transform: translateY(-2px);
+  }
+
+  .section-padding {
+    @apply px-6 py-20 md:px-12 lg:px-24 xl:px-32 md:py-28;
+  }
+
+  .gold-divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #d4a843, transparent);
+    margin: 1rem auto;
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

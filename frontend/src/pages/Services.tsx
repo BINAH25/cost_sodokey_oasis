@@ -1,0 +1,195 @@
+import { Link } from 'react-router-dom';
+import {
+  Leaf,
+  Sparkles,
+  Droplets,
+  Sun,
+  Star,
+  CheckCircle,
+  Clock,
+  ArrowRight,
+} from 'lucide-react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+
+const services = [
+  {
+    icon: Leaf,
+    title: 'Relaxation Massage',
+    tagline: 'Unwind Your Mind',
+    duration: '60 / 90 min',
+    price: 'From GH\u2012XXX',
+    image: '/relaxation-msssage.jpeg',
+    benefits: [
+      'Deep stress reduction and mental relaxation',
+      'Improved sleep quality and emotional wellbeing',
+      'Enhanced circulation and overall vitality',
+      'Gentle, soothing strokes for total comfort',
+    ],
+    pillar: 'RELAX',
+    pillarColor: 'text-emerald-400',
+  },
+  {
+    icon: Sparkles,
+    title: 'Deep Tissue Massage',
+    tagline: 'Refresh Your Body',
+    duration: '60 / 90 min',
+    price: 'From GH\u2012XXX',
+    image: '/deeptissuemassage.jpg',
+    benefits: [
+      'Targeted muscle recovery and tension release',
+      'Breakdown of adhesions and scar tissue',
+      'Enhanced mobility and range of motion',
+      'Long-lasting relief from chronic pain',
+    ],
+    pillar: 'RENEW',
+    pillarColor: 'text-amber-400',
+  },
+  {
+    icon: Droplets,
+    title: 'Meridian Therapy',
+    tagline: 'Rebalance Your Energy',
+    duration: '60 / 90 min',
+    price: 'From GH\u2012XXX',
+    image: '/meridian-massage.jpg',
+    benefits: [
+      'Balance and restore energy flow',
+      'Promote metabolism and reduce inflammation',
+      'Relieve pain and detoxify the body',
+      'Beautify and slim with dual treatment effects',
+    ],
+    pillar: 'RESTORE',
+    pillarColor: 'text-cyan-400',
+  },
+  {
+    icon: Sun,
+    title: 'Oasis Signature Experience',
+    tagline: 'Revitalize Your Life',
+    duration: '120 min',
+    price: 'From GH\u2012XXX',
+    image: '/revive-oasis-massaggi.jpg',
+    benefits: [
+      'Complete Massage + Meridian Therapy session',
+      'The full Oasis Wellness Method journey',
+      'Holistic mind, body, and energy renewal',
+      'Our most comprehensive wellness experience',
+    ],
+    pillar: 'REVIVE',
+    pillarColor: 'text-orange-400',
+    popular: true,
+  },
+];
+
+export default function Services() {
+  const scrollRef = useScrollAnimation();
+
+  return (
+    <div ref={scrollRef}>
+      {/* Hero */}
+      <section className="relative pt-32 pb-20 bg-gradient-oasis-dark overflow-hidden">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-oasis-gold/5 blur-[100px]" />
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <span className="text-oasis-gold text-xs uppercase tracking-[0.3em] font-semibold">
+            Our Services
+          </span>
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-3 leading-tight">
+            Tailored <span className="text-gradient-gold">Treatments</span>
+          </h1>
+          <div className="gold-divider mt-4" />
+          <p className="text-white/50 text-lg mt-6 max-w-2xl mx-auto">
+            Each treatment is crafted to address your specific wellness needs,
+            delivered with expertise and genuine care.
+          </p>
+        </div>
+      </section>
+
+      {/* Services List */}
+      <section className="bg-oasis-dark section-padding">
+        <div className="max-w-6xl mx-auto space-y-16">
+          {services.map((service, i) => (
+            <div
+              key={service.title}
+              className={`animate-on-scroll grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${
+                i % 2 !== 0 ? 'lg:[direction:rtl]' : ''
+              }`}
+            >
+              <div className={`relative ${i % 2 !== 0 ? 'lg:[direction:ltr]' : ''}`}>
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-oasis-light/10 bg-gradient-to-br from-oasis-base to-oasis-deep">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover opacity-70"
+                  />
+                </div>
+                {service.popular && (
+                  <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-oasis-gold/20 border border-oasis-gold/30 backdrop-blur-sm rounded-full px-4 py-1.5">
+                    <Star className="w-4 h-4 text-oasis-gold fill-oasis-gold" />
+                    <span className="text-oasis-gold text-xs font-semibold uppercase tracking-wider">
+                      Most Popular
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              <div className={i % 2 !== 0 ? 'lg:[direction:ltr]' : ''}>
+                <span className={`${service.pillarColor} text-xs uppercase tracking-[0.3em] font-semibold`}>
+                  {service.pillar}
+                </span>
+                <h2 className="font-display text-2xl md:text-3xl font-semibold text-white mt-2">
+                  {service.title}
+                </h2>
+                <p className="text-white/40 text-sm mt-1">{service.tagline}</p>
+                <div className="gold-divider !ml-0 mt-4" />
+
+                <ul className="mt-6 space-y-3">
+                  {service.benefits.map((b) => (
+                    <li key={b} className="flex items-start gap-3 text-white/60 text-sm">
+                      <CheckCircle className="w-4 h-4 text-oasis-glow/60 shrink-0 mt-0.5" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex items-center gap-6 mt-8 text-sm">
+                  <div className="flex items-center gap-2 text-white/40">
+                    <Clock className="w-4 h-4" />
+                    {service.duration}
+                  </div>
+                  <div className="text-oasis-gold font-semibold">
+                    {service.price}
+                  </div>
+                </div>
+
+                <Link
+                  to="/contact"
+                  className="btn-gold inline-flex items-center gap-2 mt-6 text-sm !py-2.5 !px-5"
+                >
+                  Book This Service
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative py-24 md:py-32 bg-gradient-oasis overflow-hidden">
+        <div className="absolute inset-0 bg-oasis-gold/5" />
+        <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
+          <h2 className="animate-on-scroll font-display text-3xl md:text-5xl font-bold text-white leading-tight">
+            Not Sure Which Treatment
+            <br />
+            <span className="text-gradient-gold">Is Right for You?</span>
+          </h2>
+          <p className="animate-on-scroll text-white/50 mt-6 text-lg">
+            Let's discuss your needs and find the perfect wellness plan together.
+          </p>
+          <Link to="/contact" className="animate-on-scroll btn-gold inline-flex items-center gap-2 mt-8">
+            Get a Consultation
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+}

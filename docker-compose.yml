@@ -1,0 +1,35 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+  # Uncomment when Django backend is ready
+  # backend:
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8000:8000"
+  #   environment:
+  #     - DEBUG=False
+  #     - DATABASE_URL=postgres://oasis:oasis@db:5432/oasis
+  #   depends_on:
+  #     - db
+  #   restart: unless-stopped
+
+  # db:
+  #   image: postgres:16-alpine
+  #   environment:
+  #     POSTGRES_DB: oasis
+  #     POSTGRES_USER: oasis
+  #     POSTGRES_PASSWORD: oasis
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   restart: unless-stopped
+
+# volumes:
+#   postgres_data:
