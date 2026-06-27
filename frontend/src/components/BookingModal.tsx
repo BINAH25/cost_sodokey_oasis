@@ -1,11 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
-import { X, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
+import { X, CheckCircle, Loader2, AlertCircle, Home, Building2 } from 'lucide-react';
+import { createAppointment, ApiError } from '../lib/api';
 
 const SERVICE_OPTIONS = [
   'Relaxation Massage',
   'Deep Tissue Massage',
   'Meridian Therapy',
   'Oasis Signature Experience',
+];
+
+const LOCATION_OPTIONS = [
+  { value: 'sanctuary', label: 'At the Sanctuary', desc: 'Visit us in Darkuman, Accra', icon: Building2 },
+  { value: 'home', label: 'Home Service', desc: 'We come to your location', icon: Home },
 ];
 
 interface Props {
@@ -18,6 +24,7 @@ interface FormState {
   email: string;
   phone: string;
   service: string;
+  location: string;
   date: string;
   time: string;
   message: string;
@@ -28,6 +35,7 @@ const EMPTY: FormState = {
   email: '',
   phone: '',
   service: '',
+  location: 'sanctuary',
   date: '',
   time: '',
   message: '',
@@ -69,10 +77,24 @@ export default function BookingModal({ isOpen, onClose }: Props) {
     setStatus('submitting');
     setErrorMsg('');
 
-    // TODO: replace with Django API call, e.g.:
-    // await fetch('/api/bookings/', { method: 'POST', body: JSON.stringify(form), headers: { 'Content-Type': 'application/json' } })
-    await new Promise((r) => setTimeout(r, 600));
-    setStatus('success');
+    try {
+      await createAppointment({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        service: form.service,
+        location: form.location,
+        date: form.date,
+        time: form.time,
+        message: form.message,
+      });
+      setStatus('success');
+    } catch (err) {
+      setStatus('error');
+      setErrorMsg(
+        err instanceof ApiError ? err.message : 'Something went wrong. Please try again.'
+      );
+    }
   };
 
   if (!isOpen) return null;
@@ -193,6 +215,46 @@ export default function BookingModal({ isOpen, onClose }: Props) {
                     </option>
                   ))}
                 </select>
+              </div>
+
+              {/* Location preference */}
+              <div>
+                <label className={labelCls}>Where would you like your session?</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {LOCATION_OPTIONS.map((opt) => {
+                    const active = form.location === opt.value;
+                    return (
+                      <label
+                        key={opt.value}
+                        className={`cursor-pointer rounded-xl border p-4 flex items-start gap-3 transition-all duration-300 ${
+                          active
+                            ? 'border-oasis-gold/60 bg-oasis-gold/10'
+                            : 'border-oasis-light/20 bg-oasis-base/60 hover:border-oasis-gold/30'
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="location"
+                          value={opt.value}
+                          checked={active}
+                          onChange={handleChange}
+                          className="sr-only"
+                        />
+                        <div
+                          className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                            active ? 'bg-oasis-gold/20' : 'bg-oasis-gold/10'
+                          }`}
+                        >
+                          <opt.icon className="w-4 h-4 text-oasis-gold" />
+                        </div>
+                        <div>
+                          <p className="text-white text-sm font-medium">{opt.label}</p>
+                          <p className="text-white/40 text-xs mt-0.5">{opt.desc}</p>
+                        </div>
+                      </label>
+                    );
+                  })}
+                </div>
               </div>
 
               {/* Date + Time */}

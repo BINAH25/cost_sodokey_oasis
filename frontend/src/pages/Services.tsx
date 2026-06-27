@@ -5,25 +5,28 @@ import {
   Droplets,
   Sun,
   Star,
+  Heart,
+  Activity,
   CheckCircle,
   Clock,
   ArrowRight,
+  Info,
 } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const services = [
   {
     icon: Leaf,
-    title: 'Relaxation Massage',
+    title: 'Swedish Massage Therapy',
     tagline: 'Unwind Your Mind',
     duration: '60 / 90 min',
     price: 'From GH\u2012XXX',
     image: '/relaxation-msssage.jpeg',
     benefits: [
-      'Deep stress reduction and mental relaxation',
-      'Improved sleep quality and emotional wellbeing',
-      'Enhanced circulation and overall vitality',
-      'Gentle, soothing strokes for total comfort',
+      'Reduced stress',
+      'Improved circulation',
+      'Better sleep quality',
+      'Relaxation and rejuvenation',
     ],
     pillar: 'RELAX',
     pillarColor: 'text-emerald-400',
@@ -36,42 +39,93 @@ const services = [
     price: 'From GH\u2012XXX',
     image: '/deeptissuemassage.jpg',
     benefits: [
-      'Targeted muscle recovery and tension release',
-      'Breakdown of adhesions and scar tissue',
-      'Enhanced mobility and range of motion',
-      'Long-lasting relief from chronic pain',
+      'Muscle recovery',
+      'Improved flexibility',
+      'Reduced stiffness',
+      'Enhanced mobility',
     ],
     pillar: 'RENEW',
     pillarColor: 'text-amber-400',
   },
   {
+    icon: Sun,
+    title: 'Trigger Point Therapy',
+    tagline: 'Release the Tension',
+    duration: '45 / 60 min',
+    price: 'From GH\u2012XXX',
+    image: '/deeptissuemassage.jpg',
+    benefits: [
+      'Relief of muscle tightness',
+      'Improved movement',
+      'Reduced discomfort',
+      'Enhanced physical performance',
+    ],
+    pillar: 'RENEW',
+    pillarColor: 'text-amber-400',
+  },
+  {
+    icon: Heart,
+    title: 'Full Body Therapeutic Massage',
+    tagline: 'Restore Your Whole Self',
+    duration: '90 min',
+    price: 'From GH\u2012XXX',
+    image: '/relaxation-msssage.jpeg',
+    benefits: [
+      'Complete body relaxation',
+      'Stress reduction',
+      'Improved blood flow',
+      'Enhanced recovery',
+    ],
+    pillar: 'RELAX',
+    pillarColor: 'text-emerald-400',
+  },
+  {
     icon: Droplets,
-    title: 'Meridian Therapy',
+    title: 'Meridian Balance Therapy',
     tagline: 'Rebalance Your Energy',
     duration: '60 / 90 min',
     price: 'From GH\u2012XXX',
     image: '/meridian-massage.jpg',
     benefits: [
-      'Balance and restore energy flow',
-      'Promote metabolism and reduce inflammation',
-      'Relieve pain and detoxify the body',
-      'Beautify and slim with dual treatment effects',
+      'Relaxation',
+      'Energy balance',
+      'Improved circulation',
+      'Wellness support',
     ],
     pillar: 'RESTORE',
     pillarColor: 'text-cyan-400',
   },
   {
-    icon: Sun,
-    title: 'Oasis Signature Experience',
+    icon: Activity,
+    title: 'FOHOW Meridian Wellness Session',
+    tagline: 'Modern Wellness Technology',
+    duration: '60 min',
+    price: 'From GH\u2012XXX',
+    image: '/meridian-massage.jpg',
+    benefits: [
+      'Supports relaxation',
+      'Supports circulation',
+      'Supports recovery',
+      'Enhances overall wellness',
+      'Helps reduce muscle tension',
+    ],
+    pillar: 'RESTORE',
+    pillarColor: 'text-cyan-400',
+    disclaimer:
+      'This service is intended to support wellness and relaxation and is not intended to diagnose, treat, cure, or prevent any disease.',
+  },
+  {
+    icon: Star,
+    title: 'The Oasis Signature Experience',
     tagline: 'Revitalize Your Life',
-    duration: '120 min',
+    duration: '90 min',
     price: 'From GH\u2012XXX',
     image: '/revive-oasis-massaggi.jpg',
     benefits: [
-      'Complete Massage + Meridian Therapy session',
-      'The full Oasis Wellness Method journey',
-      'Holistic mind, body, and energy renewal',
-      'Our most comprehensive wellness experience',
+      'Full Body Therapeutic Massage',
+      'Meridian Balance Therapy',
+      'FOHOW Wellness Session',
+      'Personalized Wellness Guidance',
     ],
     pillar: 'REVIVE',
     pillarColor: 'text-orange-400',
@@ -89,7 +143,7 @@ export default function Services() {
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-oasis-gold/5 blur-[100px]" />
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           <span className="text-oasis-gold text-xs uppercase tracking-[0.3em] font-semibold">
-            Our Services
+            Our Signature Services
           </span>
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-3 leading-tight">
             Tailored <span className="text-gradient-gold">Treatments</span>
@@ -148,6 +202,13 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
+
+                {service.disclaimer && (
+                  <div className="mt-5 flex items-start gap-2.5 text-white/35 text-xs leading-relaxed bg-oasis-base/30 border border-oasis-light/10 rounded-lg px-4 py-3">
+                    <Info className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+                    <span>{service.disclaimer}</span>
+                  </div>
+                )}
 
                 <div className="flex items-center gap-6 mt-8 text-sm">
                   <div className="flex items-center gap-2 text-white/40">

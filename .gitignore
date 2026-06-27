@@ -1,2 +1,7 @@
 .DS_Store
 *.DS_Store
+.claude
+
+# Netlify CLI local state
+.netlify/
+**/.netlify/

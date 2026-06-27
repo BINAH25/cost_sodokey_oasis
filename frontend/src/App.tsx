@@ -2,17 +2,21 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import LaunchBanner from './components/LaunchBanner';
+import WhatsAppButton from './components/WhatsAppButton';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
 import Philosophy from './pages/Philosophy';
 import Contact from './pages/Contact';
+import Feedback from './pages/Feedback';
 
 export default function App() {
   return (
     <Router>
       <ScrollToTop />
       <div className="min-h-screen bg-oasis-dark text-white font-body">
+        <LaunchBanner />
         <Navbar />
         <main>
           <Routes>
@@ -21,9 +25,11 @@ export default function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/philosophy" element={<Philosophy />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/feedback" element={<Feedback />} />
           </Routes>
         </main>
         <Footer />
+        <WhatsAppButton />
       </div>
     </Router>
   );

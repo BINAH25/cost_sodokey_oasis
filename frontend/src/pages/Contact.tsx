@@ -1,7 +1,8 @@
 import { useState, type FormEvent } from 'react';
-import { MapPin, Phone, Mail, MessageCircle, Clock, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageCircle, Clock, Send, Home, Building2, Loader2, AlertCircle } from 'lucide-react';
 import SectionTitle from '../components/SectionTitle';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { createAppointment, ApiError } from '../lib/api';
 
 const contactInfo = [
   { icon: MapPin, label: 'Location', value: 'Darkuman, Accra, Ghana' },
@@ -11,13 +12,45 @@ const contactInfo = [
   { icon: Clock, label: 'Hours', value: 'Mon–Sat: 9am – 7pm' },
 ];
 
+const locationOptions = [
+  { value: 'sanctuary', label: 'At the Sanctuary', desc: 'Visit us in Darkuman, Accra', icon: Building2 },
+  { value: 'home', label: 'Home Service', desc: 'We come to your location', icon: Home },
+];
+
+const EMPTY_FORM = {
+  name: '',
+  email: '',
+  phone: '',
+  service: '',
+  location: 'sanctuary',
+  message: '',
+};
+
 export default function Contact() {
   const scrollRef = useScrollAnimation();
+  const [form, setForm] = useState(EMPTY_FORM);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setErrorMsg('');
+    try {
+      await createAppointment(form);
+      setSubmitted(true);
+    } catch (err) {
+      setErrorMsg(
+        err instanceof ApiError ? err.message : 'Something went wrong. Please try again.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -122,7 +155,10 @@ export default function Contact() {
                     <label className="block text-white/60 text-sm mb-2">Full Name</label>
                     <input
                       type="text"
+                      name="name"
                       required
+                      value={form.name}
+                      onChange={handleChange}
                       className="w-full bg-oasis-dark/60 border border-oasis-light/15 rounded-lg px-4 py-3 text-white text-sm placeholder-white/30 focus:outline-none focus:border-oasis-gold/40 transition-colors"
                       placeholder="Your name"
                     />
@@ -131,7 +167,10 @@ export default function Contact() {
                     <label className="block text-white/60 text-sm mb-2">Email</label>
                     <input
                       type="email"
+                      name="email"
                       required
+                      value={form.email}
+                      onChange={handleChange}
                       className="w-full bg-oasis-dark/60 border border-oasis-light/15 rounded-lg px-4 py-3 text-white text-sm placeholder-white/30 focus:outline-none focus:border-oasis-gold/40 transition-colors"
                       placeholder="you@email.com"
                     />
@@ -140,31 +179,101 @@ export default function Contact() {
                     <label className="block text-white/60 text-sm mb-2">Phone</label>
                     <input
                       type="tel"
+                      name="phone"
+                      required
+                      value={form.phone}
+                      onChange={handleChange}
                       className="w-full bg-oasis-dark/60 border border-oasis-light/15 rounded-lg px-4 py-3 text-white text-sm placeholder-white/30 focus:outline-none focus:border-oasis-gold/40 transition-colors"
                       placeholder="+233 XX XXX XXXX"
                     />
                   </div>
                   <div>
+                    <label className="block text-white/60 text-sm mb-2">Where would you like your session?</label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {locationOptions.map((opt) => {
+                        const active = form.location === opt.value;
+                        return (
+                          <label
+                            key={opt.value}
+                            className={`cursor-pointer rounded-lg border p-4 flex items-start gap-3 transition-all duration-300 ${
+                              active
+                                ? 'border-oasis-gold/60 bg-oasis-gold/10'
+                                : 'border-oasis-light/15 bg-oasis-dark/60 hover:border-oasis-gold/30'
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="location"
+                              value={opt.value}
+                              checked={active}
+                              onChange={handleChange}
+                              className="sr-only"
+                            />
+                            <div
+                              className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                                active ? 'bg-oasis-gold/20' : 'bg-oasis-gold/10'
+                              }`}
+                            >
+                              <opt.icon className="w-4 h-4 text-oasis-gold" />
+                            </div>
+                            <div>
+                              <p className="text-white text-sm font-medium">{opt.label}</p>
+                              <p className="text-white/40 text-xs mt-0.5">{opt.desc}</p>
+                            </div>
+                          </label>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div>
                     <label className="block text-white/60 text-sm mb-2">Service of Interest</label>
-                    <select className="w-full bg-oasis-dark/60 border border-oasis-light/15 rounded-lg px-4 py-3 text-white/70 text-sm focus:outline-none focus:border-oasis-gold/40 transition-colors appearance-none">
+                    <select
+                      name="service"
+                      required
+                      value={form.service}
+                      onChange={handleChange}
+                      className="w-full bg-oasis-dark/60 border border-oasis-light/15 rounded-lg px-4 py-3 text-white/70 text-sm focus:outline-none focus:border-oasis-gold/40 transition-colors appearance-none"
+                    >
                       <option value="">Select a service</option>
-                      <option value="relaxation">Relaxation Massage</option>
-                      <option value="deep-tissue">Deep Tissue Massage</option>
-                      <option value="meridian">Meridian Therapy</option>
-                      <option value="signature">Oasis Signature Experience</option>
+                      <option value="Relaxation Massage">Relaxation Massage</option>
+                      <option value="Deep Tissue Massage">Deep Tissue Massage</option>
+                      <option value="Meridian Therapy">Meridian Therapy</option>
+                      <option value="Oasis Signature Experience">Oasis Signature Experience</option>
                     </select>
                   </div>
                   <div>
                     <label className="block text-white/60 text-sm mb-2">Message</label>
                     <textarea
+                      name="message"
                       rows={4}
+                      value={form.message}
+                      onChange={handleChange}
                       className="w-full bg-oasis-dark/60 border border-oasis-light/15 rounded-lg px-4 py-3 text-white text-sm placeholder-white/30 focus:outline-none focus:border-oasis-gold/40 transition-colors resize-none"
                       placeholder="Tell us about your wellness goals..."
                     />
                   </div>
-                  <button type="submit" className="btn-gold w-full flex items-center justify-center gap-2">
-                    Send Message
-                    <Send className="w-4 h-4" />
+                  {errorMsg && (
+                    <div className="flex items-center gap-2 text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-3">
+                      <AlertCircle className="w-4 h-4 shrink-0" />
+                      {errorMsg}
+                    </div>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="btn-gold w-full flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {submitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="w-4 h-4" />
+                      </>
+                    )}
                   </button>
                 </form>
               )}

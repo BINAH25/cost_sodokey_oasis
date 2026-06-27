@@ -49,8 +49,18 @@ export default {
         'fade-in': 'fadeIn 0.6s ease-out forwards',
         'shimmer': 'shimmer 3s ease-in-out infinite',
         'pulse-gold': 'pulseGold 3s ease-in-out infinite',
+        'hero-pan': 'heroPan 30s ease-in-out infinite',
+        'water-sheen': 'waterSheen 12s ease-in-out infinite',
       },
       keyframes: {
+        heroPan: {
+          '0%, 100%': { transform: 'scale(1.08) translate(0, 0)' },
+          '50%': { transform: 'scale(1.15) translate(-1.5%, -1.5%)' },
+        },
+        waterSheen: {
+          '0%, 100%': { opacity: '0.3', transform: 'translateX(-8%)' },
+          '50%': { opacity: '0.7', transform: 'translateX(8%)' },
+        },
         ripple: {
           '0%': { transform: 'scale(0.6)', opacity: '0.8' },
           '100%': { transform: 'scale(1.8)', opacity: '0' },

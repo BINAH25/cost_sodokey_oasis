@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import WaterRipple from '../components/WaterRipple';
 import SectionTitle from '../components/SectionTitle';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
@@ -70,7 +69,6 @@ export default function Philosophy() {
     <div ref={scrollRef}>
       {/* Hero */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-oasis-dark overflow-hidden">
-        <WaterRipple />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-oasis-gold/5 blur-[100px]" />
         <div className="relative z-10 text-center px-6 max-w-3xl mx-auto pt-20">
           <span className="text-oasis-gold text-xs uppercase tracking-[0.3em] font-semibold">

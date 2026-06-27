@@ -9,6 +9,7 @@ const navLinks = [
   { name: 'Services', path: '/services' },
   { name: 'Philosophy', path: '/philosophy' },
   { name: 'Contact', path: '/contact' },
+  { name: 'Feedback', path: '/feedback' },
 ];
 
 export default function Navbar() {
@@ -31,7 +32,7 @@ export default function Navbar() {
     <>
     <BookingModal isOpen={bookingOpen} onClose={() => setBookingOpen(false)} />
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? 'bg-oasis-dark/95 backdrop-blur-md shadow-lg shadow-black/20'
           : 'bg-transparent'

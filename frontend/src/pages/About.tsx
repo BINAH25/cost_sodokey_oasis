@@ -1,7 +1,26 @@
 import { Link } from 'react-router-dom';
-import { Award, Heart, Eye, Globe, ArrowRight, Leaf } from 'lucide-react';
+import { Award, Heart, Eye, Globe, ArrowRight, CheckCircle, Target, Compass } from 'lucide-react';
 import SectionTitle from '../components/SectionTitle';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+
+const specializations = [
+  'Swedish Massage',
+  'Deep Tissue Massage',
+  'Trigger Point Therapy',
+  'Full Body Therapeutic Massage',
+  'Meridian Therapy',
+  'Wellness Consultation',
+  'Relaxation & Recovery Programs',
+];
+
+const credentials = [
+  'Certified Massage Therapist',
+  'Certified Meridian Therapy Practitioner',
+  'Traditional Chinese Medicine Wellness Training',
+  'FOHOW Meridian Wellness Specialist',
+  'Holistic Wellness Consultant',
+  'Continuous Professional Development in Therapeutic Massage & Wellness Care',
+];
 
 const highlights = [
   {
@@ -69,22 +88,37 @@ export default function About() {
       {/* Journey */}
       <section className="bg-oasis-dark section-padding">
         <div className="max-w-4xl mx-auto">
-          <SectionTitle subtitle="My Journey" title="The Path to Wellness" />
+          <SectionTitle subtitle="Founder & Lead Therapist" title="The Path to Wellness" />
           <div className="space-y-6 animate-on-scroll">
             <p className="text-white/60 text-base leading-relaxed text-center">
-              My journey into wellness began with a deep understanding that true health
-              extends far beyond the physical. It encompasses mental clarity, emotional
-              balance, and spiritual harmony. This realization led me to pursue
-              certifications in both massage therapy and meridian wellness, combining
-              ancient wisdom with modern therapeutic techniques.
+              Simon Cost Sodokey is a professionally trained Massage Therapist and
+              Meridian Wellness Practitioner dedicated to helping clients achieve optimal
+              wellness through personalized therapeutic care. His training combines modern
+              massage therapy techniques with holistic wellness principles inspired by
+              Traditional Chinese Medicine and Meridian Therapy.
             </p>
             <p className="text-white/60 text-base leading-relaxed text-center">
-              Through years of practice and continuous learning, I've developed the Oasis
-              Wellness Method — a holistic approach that addresses the whole person, not
-              just symptoms. Every client who walks through our doors receives care that
-              is informed by expertise, delivered with compassion, and designed for
-              lasting results.
+              Through years of practice and continuous learning, Simon developed the Oasis
+              Wellness Method a holistic approach that addresses the whole person, not
+              just symptoms. His mission is to create a trusted wellness sanctuary where
+              clients can relax, recover, and reconnect with their best selves.
             </p>
+          </div>
+
+          <div className="mt-12 animate-on-scroll">
+            <h3 className="text-center text-oasis-gold text-xs uppercase tracking-[0.3em] font-semibold mb-6">
+              Simon Specializes In
+            </h3>
+            <div className="flex flex-wrap justify-center gap-3">
+              {specializations.map((s) => (
+                <span
+                  key={s}
+                  className="bg-oasis-base/40 border border-oasis-light/15 text-white/70 text-sm rounded-full px-4 py-2"
+                >
+                  {s}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -117,36 +151,65 @@ export default function About() {
       {/* Certifications */}
       <section className="bg-oasis-dark section-padding">
         <div className="max-w-4xl mx-auto text-center">
-          <SectionTitle subtitle="Certifications" title="Professional Credentials" />
-          <div className="animate-on-scroll grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            <div className="card-oasis rounded-xl p-6 text-center">
-              <Award className="w-10 h-10 text-oasis-gold mx-auto mb-3" />
-              <h3 className="font-display text-lg font-semibold text-white">
-                Certified Massage Therapist
+          <SectionTitle subtitle="Professional Credentials" title="Trained, Certified & Trusted" />
+          <div className="animate-on-scroll grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto text-left">
+            {credentials.map((c) => (
+              <div
+                key={c}
+                className="card-oasis rounded-xl p-5 flex items-start gap-3"
+              >
+                <CheckCircle className="w-5 h-5 text-oasis-gold shrink-0 mt-0.5" />
+                <span className="text-white/70 text-sm font-medium">{c}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision */}
+      <section className="bg-oasis-deep section-padding">
+        <div className="max-w-5xl mx-auto">
+          <SectionTitle subtitle="What Drives Us" title="Our Mission & Vision" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="animate-on-scroll card-oasis rounded-2xl p-8 md:p-10">
+              <div className="w-12 h-12 rounded-xl bg-oasis-gold/10 border border-oasis-gold/20 flex items-center justify-center mb-5">
+                <Target className="w-6 h-6 text-oasis-gold" />
+              </div>
+              <h3 className="font-display text-2xl font-semibold text-white mb-4">
+                Our Mission
               </h3>
-              <p className="text-white/40 text-sm mt-2">
-                Professional training in therapeutic massage techniques
+              <p className="text-white/60 text-base leading-relaxed text-justify">
+                To provide professional, personalized therapeutic massage and holistic
+                wellness care that restores balance to the body and mind. We are committed
+                to creating a trusted sanctuary where every client can relax, recover, and
+                reconnect with their best self-delivered with genuine care, integrity,
+                and the highest standards of practice.
               </p>
             </div>
-            <div className="card-oasis rounded-xl p-6 text-center">
-              <Leaf className="w-10 h-10 text-oasis-gold mx-auto mb-3" />
-              <h3 className="font-display text-lg font-semibold text-white">
-                Certified Meridian Wellness Practitioner
+            <div className="animate-on-scroll card-oasis rounded-2xl p-8 md:p-10" style={{ transitionDelay: '100ms' }}>
+              <div className="w-12 h-12 rounded-xl bg-oasis-gold/10 border border-oasis-gold/20 flex items-center justify-center mb-5">
+                <Compass className="w-6 h-6 text-oasis-gold" />
+              </div>
+              <h3 className="font-display text-2xl font-semibold text-white mb-4">
+                Our Vision
               </h3>
-              <p className="text-white/40 text-sm mt-2">
-                Expert in meridian therapy and energy flow optimization
+              <p className="text-white/60 text-base leading-relaxed text-justify">
+                To establish wellness as a cornerstone of everyday life in Ghana making
+                holistic, professional therapy accessible to all and showing that self-care
+                is not a luxury, but a necessity for a fulfilling life. We envision Oasis as
+                a leading name in world-class wellness care across Ghana and beyond.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Vision */}
+      {/* Vision CTA */}
       <section className="relative py-24 md:py-32 bg-gradient-oasis overflow-hidden">
         <div className="absolute inset-0 bg-oasis-gold/5" />
         <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
           <span className="animate-on-scroll text-oasis-gold text-xs uppercase tracking-[0.3em] font-semibold">
-            Vision for Ghana
+            Be Part of It
           </span>
           <h2 className="animate-on-scroll font-display text-3xl md:text-4xl font-bold text-white mt-3 leading-tight">
             Bringing World-Class Wellness
@@ -156,7 +219,7 @@ export default function About() {
           <p className="animate-on-scroll mt-6 text-white/50 text-base leading-relaxed">
             My vision is to establish wellness as a cornerstone of everyday life in Ghana.
             To make holistic, professional therapy accessible and to show that self-care
-            is not a luxury — it is a necessity for a fulfilling life.
+            is not a luxury it is a necessity for a fulfilling life.
           </p>
           <Link to="/contact" className="animate-on-scroll btn-gold inline-flex items-center gap-2 mt-8">
             Join the Journey
