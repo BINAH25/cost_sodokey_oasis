@@ -72,16 +72,31 @@ docker compose -f docker-compose.prod.yml up -d
 docker compose up --build
 ```
 
-Either way this starts three services:
-- `db` — PostgreSQL 16 (data persisted in the `postgres_data` volume)
+The production stack (`docker-compose.prod.yml`) runs four services:
+- `caddy` — public entry point on `:80`/`:443`; terminates TLS with automatic
+  Let's Encrypt certificates and proxies to the frontend. Redirects http→https
+  and `www`→apex. Certs persist in the `caddy_data` volume.
+- `frontend` — nginx serving the SPA **and** reverse-proxying `/api/`, `/admin/`,
+  and `/static/` to the backend (internal only, reached by Caddy)
 - `backend` — Django served by gunicorn (runs migrations on startup); reachable
   only on the internal network at `http://backend:8000` (no published port)
-- `frontend` — nginx on `:80` serving the SPA **and** reverse-proxying
-  `/api/`, `/admin/`, and `/static/` to the backend
+- `db` — PostgreSQL 16 (data persisted in the `postgres_data` volume)
 
 Everything lives on **one domain** (e.g. `oasismassagewellness.com`): nginx
 routes `/api/` to Django, so the frontend calls the API same-origin — no
 separate API subdomain and no CORS needed in production.
+
+### TLS / HTTPS
+
+Caddy obtains and auto-renews Let's Encrypt certificates with no extra steps —
+just point the domain's DNS at the server and set `DOMAIN` and `ACME_EMAIL` in
+`.env`. Requirements:
+- Ports **80 and 443** open to the internet (Let's Encrypt validates over both).
+- DNS `A`/`AAAA` records for the apex domain (and `www`) pointing at the server
+  **before** first start, or cert issuance will fail.
+
+The build-from-source `docker-compose.yml` (option B) has **no TLS** and exposes
+the frontend on `:80` — use it for local/dev only.
 
 Override secrets/hosts via environment variables (see `docker-compose.yml`):
 `SECRET_KEY`, `ALLOWED_HOSTS`, `CSRF_TRUSTED_ORIGINS`.

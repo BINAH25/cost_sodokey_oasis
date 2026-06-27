@@ -1,0 +1,20 @@
+# Caddy reverse proxy with automatic HTTPS (Let's Encrypt).
+#
+# DOMAIN and ACME_EMAIL come from the environment (set in .env).
+# Caddy obtains and auto-renews certificates for the domains below, and
+# redirects http→https automatically.
+
+{
+	email {$ACME_EMAIL}
+}
+
+# Apex domain → frontend nginx container.
+{$DOMAIN} {
+	encode gzip zstd
+	reverse_proxy frontend:80
+}
+
+# www → redirect to the apex domain.
+www.{$DOMAIN} {
+	redir https://{$DOMAIN}{uri} permanent
+}
