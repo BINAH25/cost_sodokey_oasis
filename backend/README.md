@@ -54,13 +54,25 @@ The frontend reads `VITE_API_URL` (see `frontend/.env`); it defaults to
 
 ## Production (Docker Compose)
 
-From the repo root:
+Two ways to run the stack from the repo root:
+
+**A. Pull prebuilt images from Docker Hub** (recommended on the server — no
+source build needed). Images are published by CI as
+`seyram11/oasis-frontend` and `seyram11/oasis-backend`:
+
+```bash
+cp .env.prod.example .env   # then fill in SECRET_KEY, POSTGRES_PASSWORD, domain
+docker compose -f docker-compose.prod.yml pull
+docker compose -f docker-compose.prod.yml up -d
+```
+
+**B. Build locally from source:**
 
 ```bash
 docker compose up --build
 ```
 
-This starts three services:
+Either way this starts three services:
 - `db` — PostgreSQL 16 (data persisted in the `postgres_data` volume)
 - `backend` — Django served by gunicorn (runs migrations on startup); reachable
   only on the internal network at `http://backend:8000` (no published port)
@@ -74,7 +86,8 @@ separate API subdomain and no CORS needed in production.
 Override secrets/hosts via environment variables (see `docker-compose.yml`):
 `SECRET_KEY`, `ALLOWED_HOSTS`, `CSRF_TRUSTED_ORIGINS`.
 
-Create an admin user inside the running container:
+Create an admin user inside the running container (add
+`-f docker-compose.prod.yml` when using the prebuilt-images stack):
 
 ```bash
 docker compose exec backend python manage.py createsuperuser

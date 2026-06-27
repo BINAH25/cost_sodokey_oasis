@@ -1,0 +1,49 @@
+# Production stack — pulls prebuilt images from Docker Hub (no local build).
+#
+# On the server:
+#   docker compose -f docker-compose.prod.yml pull
+#   docker compose -f docker-compose.prod.yml up -d
+#
+# Set secrets/domain in a .env file next to this file (see .env.prod.example).
+services:
+  frontend:
+    image: seyram11/oasis-frontend:${IMAGE_TAG:-latest}
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    image: seyram11/oasis-backend:${IMAGE_TAG:-latest}
+    # Reached only by the frontend's nginx over the internal network.
+    expose:
+      - "8000"
+    environment:
+      - DEBUG=False
+      - SECRET_KEY=${SECRET_KEY:?set SECRET_KEY in .env}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-oasismassagewellness.com,www.oasismassagewellness.com,localhost,127.0.0.1,backend}
+      - DATABASE_URL=postgres://oasis:${POSTGRES_PASSWORD:-oasis}@db:5432/oasis
+      - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS:-https://oasismassagewellness.com,https://www.oasismassagewellness.com}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: oasis
+      POSTGRES_USER: oasis
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-oasis}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U oasis"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
