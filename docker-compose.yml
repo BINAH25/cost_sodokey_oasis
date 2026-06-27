@@ -3,6 +3,10 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      # Empty VITE_API_URL → the SPA calls /api/ relative to its own origin,
+      # which nginx (in this image) proxies to the backend container.
+      args:
+        VITE_API_URL: ""
     ports:
       - "80:80"
     depends_on:
@@ -13,15 +17,18 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
+    # No published port: only the frontend's nginx reaches it, over the
+    # internal Docker network at http://backend:8000.
+    expose:
+      - "8000"
     environment:
       - DEBUG=False
       - SECRET_KEY=${SECRET_KEY:-change-me-in-production}
-      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1,backend}
+      # Requests arrive proxied from nginx with Host = the public domain.
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-oasismassagewellness.com,www.oasismassagewellness.com,localhost,127.0.0.1,backend}
       - DATABASE_URL=postgres://oasis:oasis@db:5432/oasis
-      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-http://localhost}
-      - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS:-}
+      # Needed for admin login form POSTs over https.
+      - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS:-https://oasismassagewellness.com,https://www.oasismassagewellness.com}
     depends_on:
       db:
         condition: service_healthy

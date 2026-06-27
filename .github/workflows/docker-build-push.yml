@@ -8,8 +8,10 @@ on:
 env:
   FRONTEND_IMAGE: seyram11/oasis-frontend
   BACKEND_IMAGE: seyram11/oasis-backend
-  # Production API URL baked into the frontend bundle. Override via the
-  # VITE_API_URL repository variable (Settings → Secrets and variables → Variables).
+  # Frontend and backend share one domain in production; nginx routes /api/ to
+  # the backend, so the SPA uses relative URLs and this should stay EMPTY.
+  # (Leave the VITE_API_URL repo variable unset — only set it for a separate
+  # API host on a different domain.)
   VITE_API_URL: ${{ vars.VITE_API_URL }}
 
 jobs:

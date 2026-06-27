@@ -1,10 +1,12 @@
 /**
  * Tiny API helper for talking to the Django backend.
  *
- * The base URL comes from VITE_API_URL (see .env). It defaults to the local
- * Django dev server so `npm run dev` works out of the box.
+ * In production the frontend and backend share one domain (nginx routes
+ * `/api/` to the backend), so the base URL is empty and requests are made
+ * relative to the current origin. For local development, set VITE_API_URL in
+ * `frontend/.env` to the Django dev server (e.g. http://127.0.0.1:8000).
  */
-const API_URL = (import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:8000').replace(/\/$/, '');
+const API_URL = (import.meta.env.VITE_API_URL ?? '').replace(/\/$/, '');
 
 export interface AppointmentPayload {
   name: string;

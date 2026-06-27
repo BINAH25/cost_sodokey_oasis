@@ -62,11 +62,17 @@ docker compose up --build
 
 This starts three services:
 - `db` — PostgreSQL 16 (data persisted in the `postgres_data` volume)
-- `backend` — Django served by gunicorn on `:8000` (runs migrations on startup)
-- `frontend` — the built site on `:80`
+- `backend` — Django served by gunicorn (runs migrations on startup); reachable
+  only on the internal network at `http://backend:8000` (no published port)
+- `frontend` — nginx on `:80` serving the SPA **and** reverse-proxying
+  `/api/`, `/admin/`, and `/static/` to the backend
+
+Everything lives on **one domain** (e.g. `oasismassagewellness.com`): nginx
+routes `/api/` to Django, so the frontend calls the API same-origin — no
+separate API subdomain and no CORS needed in production.
 
 Override secrets/hosts via environment variables (see `docker-compose.yml`):
-`SECRET_KEY`, `ALLOWED_HOSTS`, `CORS_ALLOWED_ORIGINS`, `CSRF_TRUSTED_ORIGINS`.
+`SECRET_KEY`, `ALLOWED_HOSTS`, `CSRF_TRUSTED_ORIGINS`.
 
 Create an admin user inside the running container:
 
