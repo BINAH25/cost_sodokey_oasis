@@ -11,6 +11,9 @@ class AppointmentCreateView(generics.CreateAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
     permission_classes = [permissions.AllowAny]
+    # Anonymous public submission — no session auth, so no CSRF enforcement
+    # (which otherwise 403s browsers that carry an admin session cookie).
+    authentication_classes = []
 
     def perform_create(self, serializer):
         appointment = serializer.save()
