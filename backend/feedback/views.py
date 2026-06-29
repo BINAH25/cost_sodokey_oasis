@@ -1,5 +1,6 @@
 from rest_framework import generics, permissions
 
+from .emails import send_feedback_notification
 from .models import Feedback
 from .serializers import FeedbackSerializer, PublishedFeedbackSerializer
 
@@ -22,3 +23,8 @@ class FeedbackListCreateView(generics.ListCreateAPIView):
         if self.request.method == "POST":
             return FeedbackSerializer
         return PublishedFeedbackSerializer
+
+    def perform_create(self, serializer):
+        feedback = serializer.save()
+        # Notify the owner so they can review/publish. Failures are logged.
+        send_feedback_notification(feedback)

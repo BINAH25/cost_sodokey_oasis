@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Oasis Massage &amp; Wellness{% endblock %}</title>
+</head>
+<body style="margin:0; padding:0; background-color:#0a1410; font-family:Georgia, 'Times New Roman', serif; color:#e8e6e1;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#0a1410; padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px; background-color:#0f1d17; border:1px solid rgba(212,175,107,0.2); border-radius:16px; overflow:hidden;">
+
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(135deg,#0f1d17,#0a1410); padding:32px 32px 28px; text-align:center; border-bottom:1px solid rgba(212,175,107,0.25);">
+              <img src="cid:oasis-logo" alt="Oasis Massage &amp; Wellness" width="180"
+                   style="display:block; margin:0 auto; max-width:180px; height:auto; border-radius:8px;">
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:36px 32px;">
+              {% block content %}{% endblock %}
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:24px 32px 32px; border-top:1px solid rgba(212,175,107,0.15); text-align:center;">
+              <div style="font-size:13px; color:#9aa39d; line-height:1.7;">
+                Oasis Massage &amp; Wellness<br>
+                Darkuman, opposite Sunflower School, Star Oil &mdash; Accra<br>
+                <a href="tel:+233243248922" style="color:#d4af6b; text-decoration:none;">+233 24 324 8922</a>
+                &nbsp;&bull;&nbsp;
+                <a href="https://oasismassagewellness.com" style="color:#d4af6b; text-decoration:none;">oasismassagewellness.com</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+        <div style="margin-top:16px; font-size:11px; color:#5a635d;">
+          &copy; Oasis Massage &amp; Wellness
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

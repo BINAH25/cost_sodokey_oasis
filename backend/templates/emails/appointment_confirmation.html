@@ -1,0 +1,69 @@
+{% extends "emails/base_email.html" %}
+
+{% block title %}Your Oasis Wellness Booking Request{% endblock %}
+
+{% block content %}
+  <h1 style="margin:0 0 8px; font-size:24px; color:#ffffff; font-weight:normal;">
+    Thank you, {{ appointment.name }}.
+  </h1>
+  <p style="margin:0 0 24px; font-size:15px; line-height:1.7; color:#c9cdc8;">
+    We&rsquo;ve received your booking request and will be in touch shortly to
+    confirm your appointment. Here are the details we have:
+  </p>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+         style="background-color:rgba(212,175,107,0.06); border:1px solid rgba(212,175,107,0.2); border-radius:12px; padding:8px 4px;">
+    <tr>
+      <td style="padding:12px 20px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="padding:8px 0; font-size:13px; color:#9aa39d; width:38%;">Service</td>
+            <td style="padding:8px 0; font-size:14px; color:#ffffff;">{{ appointment.service }}</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 0; font-size:13px; color:#9aa39d;">Location</td>
+            <td style="padding:8px 0; font-size:14px; color:#ffffff;">{{ location }}</td>
+          </tr>
+          {% if appointment.date %}
+          <tr>
+            <td style="padding:8px 0; font-size:13px; color:#9aa39d;">Date</td>
+            <td style="padding:8px 0; font-size:14px; color:#ffffff;">{{ appointment.date }}</td>
+          </tr>
+          {% endif %}
+          {% if appointment.time %}
+          <tr>
+            <td style="padding:8px 0; font-size:13px; color:#9aa39d;">Time</td>
+            <td style="padding:8px 0; font-size:14px; color:#ffffff;">{{ appointment.time }}</td>
+          </tr>
+          {% endif %}
+          <tr>
+            <td style="padding:8px 0; font-size:13px; color:#9aa39d;">Phone</td>
+            <td style="padding:8px 0; font-size:14px; color:#ffffff;">{{ appointment.phone }}</td>
+          </tr>
+          {% if appointment.message %}
+          <tr>
+            <td style="padding:8px 0; font-size:13px; color:#9aa39d; vertical-align:top;">Notes</td>
+            <td style="padding:8px 0; font-size:14px; color:#ffffff;">{{ appointment.message }}</td>
+          </tr>
+          {% endif %}
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <p style="margin:24px 0 28px; font-size:14px; line-height:1.7; color:#c9cdc8;">
+    If any of these details need changing, simply reply to this email and
+    we&rsquo;ll take care of it.
+  </p>
+
+  <table role="presentation" cellpadding="0" cellspacing="0" align="center">
+    <tr>
+      <td style="border-radius:999px; background-color:#d4af6b;">
+        <a href="https://wa.me/233243248922"
+           style="display:inline-block; padding:13px 32px; font-size:14px; font-weight:bold; color:#0a1410; text-decoration:none; border-radius:999px;">
+          Chat with us on WhatsApp
+        </a>
+      </td>
+    </tr>
+  </table>
+{% endblock %}

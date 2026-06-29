@@ -57,7 +57,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -147,3 +147,27 @@ CORS_ALLOWED_ORIGINS = env.list(
 if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
+
+# ---------------------------------------------------------------------------
+# Email (Gmail SMTP)
+# Set EMAIL_HOST_USER + EMAIL_HOST_PASSWORD (a Google App Password) to send real
+# mail. If they're unset, fall back to the console backend so development prints
+# emails to the log instead of failing.
+# ---------------------------------------------------------------------------
+EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
+
+if EMAIL_HOST_USER and EMAIL_HOST_PASSWORD:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_HOST = env("EMAIL_HOST", default="smtp.gmail.com")
+    EMAIL_PORT = env.int("EMAIL_PORT", default=587)
+    EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
+else:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+DEFAULT_FROM_EMAIL = env(
+    "DEFAULT_FROM_EMAIL",
+    default=EMAIL_HOST_USER or "Oasis Massage & Wellness <no-reply@oasismassagewellness.com>",
+)
+# Address that gets CC'd / notified on bookings and feedback.
+OWNER_NOTIFICATION_EMAIL = env("OWNER_NOTIFICATION_EMAIL", default="costsimons5@gmail.com")

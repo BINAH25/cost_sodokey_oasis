@@ -46,6 +46,10 @@ services:
       - ALLOWED_HOSTS=${ALLOWED_HOSTS:-oasismassagewellness.com,www.oasismassagewellness.com,localhost,127.0.0.1,backend}
       - DATABASE_URL=postgres://oasis:${POSTGRES_PASSWORD:-oasis}@db:5432/oasis
       - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS:-https://oasismassagewellness.com,https://www.oasismassagewellness.com}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER:-}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD:-}
+      - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL:-Oasis Massage & Wellness <Infooasismassagewellness@gmail.com>}
+      - OWNER_NOTIFICATION_EMAIL=${OWNER_NOTIFICATION_EMAIL:-costsimons5@gmail.com}
     depends_on:
       db:
         condition: service_healthy
