@@ -192,15 +192,11 @@ export default function Home() {
             Relax &bull; Renew &bull; Restore &bull; Revive
           </p>
           <h1 className="animate-fade-in-up font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-wide leading-[1.05]">
-            Restore Balance.
-            <br />
-            Relieve Tension.
-            <br />
-            <span className="text-gradient-gold">Renew Your Life.</span>
+            Find <span className="text-gradient-gold">Calm</span> Again.
           </h1>
           <p className="animate-fade-in-up [animation-delay:200ms] mt-6 text-lg md:text-xl text-white/70 font-light max-w-2xl mx-auto">
-            Experience professional massage therapy, meridian wellness treatments, and
-            holistic care designed to help you feel your best.
+            Experience the perfect balance of relaxation, recovery, and renewal.
+            Professional massage therapy and meridian wellness in the heart of Accra.
           </p>
           <div className="animate-fade-in-up [animation-delay:400ms] mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-white/60">
             <span>Certified Massage Therapist</span>

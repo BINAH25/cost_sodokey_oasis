@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, MessageCircle, Instagram, Facebook, Clock } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageCircle, Instagram, Facebook, Music2, Clock } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -43,6 +43,13 @@ export default function Footer() {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
+                href="#"
+                aria-label="TikTok"
+                className="w-10 h-10 rounded-full bg-oasis-base/50 flex items-center justify-center text-oasis-glow/70 hover:bg-oasis-gold/20 hover:text-oasis-gold transition-all"
+              >
+                <Music2 className="w-4 h-4" />
+              </a>
+              <a
                 href="mailto:info@oasismassagewellness.com"
                 aria-label="Email"
                 className="w-10 h-10 rounded-full bg-oasis-base/50 flex items-center justify-center text-oasis-glow/70 hover:bg-oasis-gold/20 hover:text-oasis-gold transition-all"
@@ -61,6 +68,7 @@ export default function Footer() {
                 { name: 'Home', path: '/' },
                 { name: 'About', path: '/about' },
                 { name: 'Services', path: '/services' },
+                { name: 'Wellness Investment', path: '/pricing' },
                 { name: 'Philosophy', path: '/philosophy' },
                 { name: 'Contact', path: '/contact' },
                 { name: 'Feedback', path: '/feedback' },
