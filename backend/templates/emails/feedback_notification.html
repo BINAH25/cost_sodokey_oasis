@@ -3,23 +3,23 @@
 {% block title %}New Feedback Received{% endblock %}
 
 {% block content %}
-  <h1 style="margin:0 0 8px; font-size:22px; color:#ffffff; font-weight:normal;">
+  <h1 style="margin:0 0 10px; font-size:22px; color:#0f1d17; font-weight:normal;">
     New feedback received
   </h1>
-  <p style="margin:0 0 24px; font-size:15px; line-height:1.7; color:#c9cdc8;">
+  <p style="margin:0 0 24px; font-size:15px; line-height:1.7; color:#555555;">
     A client just shared their experience. Review and publish it from the admin
     to feature it on the website.
   </p>
 
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
-         style="background-color:rgba(212,175,107,0.06); border:1px solid rgba(212,175,107,0.2); border-radius:12px;">
+         style="background-color:#faf8f3; border:1px solid #ece7dc; border-radius:12px;">
     <tr>
       <td style="padding:20px;">
-        <div style="font-size:14px; color:#ffffff;">{{ feedback.name }}</div>
+        <div style="font-size:14px; color:#2c2c2c; font-weight:bold;">{{ feedback.name }}</div>
         <div style="margin:6px 0 14px; font-size:18px; color:#d4af6b; letter-spacing:2px;">
           {{ stars }}
         </div>
-        <div style="font-size:14px; line-height:1.7; color:#c9cdc8; font-style:italic;">
+        <div style="font-size:14px; line-height:1.7; color:#555555; font-style:italic;">
           &ldquo;{{ feedback.message }}&rdquo;
         </div>
       </td>
@@ -28,9 +28,9 @@
 
   <table role="presentation" cellpadding="0" cellspacing="0" align="center" style="margin-top:28px;">
     <tr>
-      <td style="border-radius:999px; background-color:#d4af6b;">
+      <td style="border-radius:999px; background-color:#0f1d17;">
         <a href="https://oasismassagewellness.com/admin/feedback/feedback/"
-           style="display:inline-block; padding:13px 32px; font-size:14px; font-weight:bold; color:#0a1410; text-decoration:none; border-radius:999px;">
+           style="display:inline-block; padding:13px 32px; font-size:14px; font-weight:bold; color:#d4af6b; text-decoration:none; border-radius:999px;">
           Review in Admin
         </a>
       </td>

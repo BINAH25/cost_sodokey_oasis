@@ -29,21 +29,27 @@ export default function Footer() {
                 <MessageCircle className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/costsimons_"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Instagram"
                 className="w-10 h-10 rounded-full bg-oasis-base/50 flex items-center justify-center text-oasis-glow/70 hover:bg-oasis-gold/20 hover:text-oasis-gold transition-all"
               >
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/share/192UXVr1NL/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Facebook"
                 className="w-10 h-10 rounded-full bg-oasis-base/50 flex items-center justify-center text-oasis-glow/70 hover:bg-oasis-gold/20 hover:text-oasis-gold transition-all"
               >
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="https://www.tiktok.com/@cost.simons"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="TikTok"
                 className="w-10 h-10 rounded-full bg-oasis-base/50 flex items-center justify-center text-oasis-glow/70 hover:bg-oasis-gold/20 hover:text-oasis-gold transition-all"
               >

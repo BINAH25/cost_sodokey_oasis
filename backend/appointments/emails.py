@@ -49,6 +49,7 @@ def send_appointment_emails(appointment):
         text_body=text_body,
         html_body=html_body,
         to=[appointment.email],
-        cc=[settings.OWNER_NOTIFICATION_EMAIL],
+        # BCC the owner so the client never sees the business address.
+        bcc=[settings.OWNER_NOTIFICATION_EMAIL],
         reply_to=[settings.OWNER_NOTIFICATION_EMAIL],
     )

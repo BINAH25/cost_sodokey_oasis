@@ -15,7 +15,7 @@ LOGO_PATH = Path(settings.BASE_DIR) / "assets" / "oasis-logo.jpeg"
 LOGO_CID = "oasis-logo"
 
 
-def send_branded_email(*, subject, text_body, html_body, to, cc=None, reply_to=None):
+def send_branded_email(*, subject, text_body, html_body, to, cc=None, bcc=None, reply_to=None):
     """
     Build and send an EmailMultiAlternatives with the HTML body and the Oasis
     logo embedded inline. Failures are logged, not raised.
@@ -27,6 +27,7 @@ def send_branded_email(*, subject, text_body, html_body, to, cc=None, reply_to=N
             from_email=settings.DEFAULT_FROM_EMAIL,
             to=to,
             cc=cc or None,
+            bcc=bcc or None,
             reply_to=reply_to or None,
         )
         email.attach_alternative(html_body, "text/html")
