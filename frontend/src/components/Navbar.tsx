@@ -7,7 +7,7 @@ const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'About', path: '/about' },
   { name: 'Services', path: '/services' },
-  { name: 'Pricing', path: '/pricing' },
+  { name: 'Wellness Investment', path: '/pricing' },
   { name: 'Philosophy', path: '/philosophy' },
   { name: 'Contact', path: '/contact' },
   { name: 'Feedback', path: '/feedback' },
@@ -49,12 +49,12 @@ export default function Navbar() {
             />
           </Link>
 
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-0.5">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`whitespace-nowrap px-3 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   location.pathname === link.path
                     ? 'text-oasis-gold bg-oasis-gold/10'
                     : 'text-white/70 hover:text-white hover:bg-white/5'
@@ -63,14 +63,14 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <button onClick={() => setBookingOpen(true)} className="ml-4 btn-gold text-sm !py-2.5 !px-5">
+            <button onClick={() => setBookingOpen(true)} className="ml-3 btn-gold text-sm !py-2.5 !px-5 whitespace-nowrap">
               Book Now
             </button>
           </div>
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-white/80 hover:text-white transition-colors"
+            className="lg:hidden text-white/80 hover:text-white transition-colors"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -78,7 +78,7 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`md:hidden transition-all duration-300 overflow-hidden ${
+        className={`lg:hidden transition-all duration-300 overflow-hidden ${
           isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >

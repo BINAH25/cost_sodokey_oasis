@@ -19,8 +19,8 @@ const services = [
     icon: Leaf,
     title: 'Swedish Massage Therapy',
     tagline: 'Unwind Your Mind',
-    duration: '60 / 90 min',
-    price: 'From GH\u2012XXX',
+    duration: '30 / 60 / 90 min',
+    price: 'From GHS 100',
     image: '/relaxation-msssage.jpeg',
     benefits: [
       'Reduced stress',
@@ -35,8 +35,8 @@ const services = [
     icon: Sparkles,
     title: 'Deep Tissue Massage',
     tagline: 'Refresh Your Body',
-    duration: '60 / 90 min',
-    price: 'From GH\u2012XXX',
+    duration: '30 / 60 / 90 min',
+    price: 'From GHS 120',
     image: '/deeptissuemassage.jpg',
     benefits: [
       'Muscle recovery',
@@ -51,8 +51,8 @@ const services = [
     icon: Sun,
     title: 'Trigger Point Therapy',
     tagline: 'Release the Tension',
-    duration: '45 / 60 min',
-    price: 'From GH\u2012XXX',
+    duration: '30 / 60 min',
+    price: 'From GHS 150',
     image: '/deeptissuemassage.jpg',
     benefits: [
       'Relief of muscle tightness',
@@ -68,7 +68,7 @@ const services = [
     title: 'Full Body Therapeutic Massage',
     tagline: 'Restore Your Whole Self',
     duration: '90 min',
-    price: 'From GH\u2012XXX',
+    price: 'Price on consultation',
     image: '/relaxation-msssage.jpeg',
     benefits: [
       'Complete body relaxation',
@@ -84,7 +84,7 @@ const services = [
     title: 'Meridian Balance Therapy',
     tagline: 'Rebalance Your Energy',
     duration: '60 / 90 min',
-    price: 'From GH\u2012XXX',
+    price: 'Price on consultation',
     image: '/meridian-massage.jpg',
     benefits: [
       'Relaxation',
@@ -99,8 +99,8 @@ const services = [
     icon: Activity,
     title: 'FOHOW Meridian Wellness Session',
     tagline: 'Modern Wellness Technology',
-    duration: '60 min',
-    price: 'From GH\u2012XXX',
+    duration: '30 / 60 min',
+    price: 'From GHS 120',
     image: '/meridian-massage.jpg',
     benefits: [
       'Supports relaxation',
@@ -119,7 +119,7 @@ const services = [
     title: 'The Oasis Signature Experience',
     tagline: 'Revitalize Your Life',
     duration: '90 min',
-    price: 'From GH\u2012XXX',
+    price: 'GHS 350',
     image: '/revive-oasis-massaggi.jpg',
     benefits: [
       'Full Body Therapeutic Massage',
@@ -245,10 +245,16 @@ export default function Services() {
           <p className="animate-on-scroll text-white/50 mt-6 text-lg">
             Let's discuss your needs and find the perfect wellness plan together.
           </p>
-          <Link to="/contact" className="animate-on-scroll btn-gold inline-flex items-center gap-2 mt-8">
-            Get a Consultation
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="animate-on-scroll mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link to="/contact" className="btn-gold inline-flex items-center gap-2">
+              Get a Consultation
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link to="/pricing" className="btn-outline-gold inline-flex items-center gap-2">
+              View Full Pricing
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
     </div>

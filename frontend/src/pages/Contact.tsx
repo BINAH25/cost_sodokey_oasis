@@ -5,15 +5,15 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { createAppointment, ApiError } from '../lib/api';
 
 const contactInfo = [
-  { icon: MapPin, label: 'Location', value: 'Darkuman, Accra, Ghana' },
+  { icon: MapPin, label: 'Location', value: 'Darkuman, opposite Sunflower School, Star Oil — Accra' },
   { icon: Phone, label: 'Phone', value: '+233 24 324 8922', href: 'tel:+233243248922' },
   { icon: MessageCircle, label: 'WhatsApp', value: 'Chat with us on WhatsApp', href: 'https://wa.me/233243248922' },
-  { icon: Mail, label: 'Email', value: 'info@oasismassagewellness.com', href: 'mailto:info@oasismassagewellness.com' },
+  { icon: Mail, label: 'Email', value: 'Infooasismassagewellness@gmail.com', href: 'mailto:Infooasismassagewellness@gmail.com' },
   { icon: Clock, label: 'Hours', value: 'Mon–Sat: 9am – 7pm' },
 ];
 
 const locationOptions = [
-  { value: 'sanctuary', label: 'At the Sanctuary', desc: 'Visit us in Darkuman, Accra', icon: Building2 },
+  { value: 'sanctuary', label: 'At the Sanctuary', desc: 'Darkuman, opposite Sunflower School, Star Oil', icon: Building2 },
   { value: 'home', label: 'Home Service', desc: 'We come to your location', icon: Home },
 ];
 

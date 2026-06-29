@@ -50,7 +50,7 @@ export default function Footer() {
                 <Music2 className="w-4 h-4" />
               </a>
               <a
-                href="mailto:info@oasismassagewellness.com"
+                href="mailto:Infooasismassagewellness@gmail.com"
                 aria-label="Email"
                 className="w-10 h-10 rounded-full bg-oasis-base/50 flex items-center justify-center text-oasis-glow/70 hover:bg-oasis-gold/20 hover:text-oasis-gold transition-all"
               >
@@ -91,15 +91,15 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-start gap-3 text-white/50 text-sm">
                 <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-oasis-glow/50" />
-                <span>Darkuman, Accra, Ghana</span>
+                <span>Darkuman, opposite Sunflower School, Star Oil — Accra</span>
               </div>
               <a href="tel:+233243248922" className="flex items-center gap-3 text-white/50 text-sm hover:text-oasis-gold transition-colors">
                 <Phone className="w-4 h-4 shrink-0 text-oasis-glow/50" />
                 <span>+233 24 324 8922</span>
               </a>
-              <a href="mailto:info@oasismassagewellness.com" className="flex items-center gap-3 text-white/50 text-sm hover:text-oasis-gold transition-colors">
+              <a href="mailto:Infooasismassagewellness@gmail.com" className="flex items-center gap-3 text-white/50 text-sm hover:text-oasis-gold transition-colors">
                 <Mail className="w-4 h-4 shrink-0 text-oasis-glow/50" />
-                <span>info@oasismassagewellness.com</span>
+                <span>Infooasismassagewellness@gmail.com</span>
               </a>
             </div>
           </div>

@@ -260,9 +260,9 @@ export default function Home() {
             <div className="relative">
               <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-oasis-base to-oasis-deep overflow-hidden border border-oasis-light/10">
                 <img
-                  src="/WhatsApp_Image_2026-06-10_at_16.38.37_(2).jpeg"
+                  src="/founder.jpeg"
                   alt="Simon Cost Sodokey - Founder"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-xl bg-oasis-gold/10 border border-oasis-gold/20 backdrop-blur-sm flex items-center justify-center overflow-hidden">

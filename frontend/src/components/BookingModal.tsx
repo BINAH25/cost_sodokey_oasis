@@ -10,7 +10,7 @@ const SERVICE_OPTIONS = [
 ];
 
 const LOCATION_OPTIONS = [
-  { value: 'sanctuary', label: 'At the Sanctuary', desc: 'Visit us in Darkuman, Accra', icon: Building2 },
+  { value: 'sanctuary', label: 'At the Sanctuary', desc: 'Darkuman, opposite Sunflower School, Star Oil', icon: Building2 },
   { value: 'home', label: 'Home Service', desc: 'We come to your location', icon: Home },
 ];
 

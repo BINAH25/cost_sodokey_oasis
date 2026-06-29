@@ -57,9 +57,9 @@ export default function About() {
           <div className="animate-on-scroll">
             <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-oasis-base to-oasis-deep overflow-hidden border border-oasis-light/10">
               <img
-                src="/WhatsApp_Image_2026-06-10_at_16.38.37_(2).jpeg"
+                src="/founder.jpeg"
                 alt="Simon Cost Sodokey"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-center"
               />
             </div>
           </div>
