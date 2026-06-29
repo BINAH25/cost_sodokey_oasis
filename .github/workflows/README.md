@@ -1,36 +1,55 @@
-# CI/CD — Docker Hub
+# CI/CD — Build, Push & Deploy
 
-`docker-build-push.yml` builds and pushes the two images to Docker Hub on every
-push to `main` (and on manual dispatch):
+`docker-build-push.yml` runs on every push to `main` (and manual dispatch):
 
-- `seyram11/oasis-frontend`
-- `seyram11/oasis-backend`
-
-Each job only runs when its directory (`frontend/**` or `backend/**`) changed,
-and pushes two tags: `latest` and the full commit SHA (`sha-<commit>`).
+1. **Build & push** the two images to Docker Hub, each tagged `latest` and
+   `sha-<commit>`. Each image only rebuilds when its directory changed
+   (`frontend/**` or `backend/**`).
+   - `seyram11/oasis-frontend`
+   - `seyram11/oasis-backend`
+2. **Deploy**: SSH into the droplet and run
+   `docker compose -f docker-compose.prod.yml pull && up -d` so the new images
+   go live automatically.
 
 ## Required configuration
 
-In the GitHub repo: **Settings → Secrets and variables → Actions**.
+In the GitHub repo: **Settings → Secrets and variables → Actions** →
+**Repository secrets** (not environment secrets).
 
 ### Secrets
-| Name                 | Value                                                            |
-| -------------------- | --------------------------------------------------------------- |
-| `DOCKERHUB_USERNAME` | Your Docker Hub username (e.g. `seyram11`)                       |
-| `DOCKERHUB_TOKEN`    | A Docker Hub **access token** (Account Settings → Security) — not your password |
+| Name                 | Value                                                              |
+| -------------------- | ------------------------------------------------------------------ |
+| `DOCKERHUB_USERNAME` | Docker Hub username (e.g. `seyram11`)                              |
+| `DOCKERHUB_TOKEN`    | Docker Hub **access token** (Account Settings → Security)          |
+| `DEPLOY_HOST`        | Droplet public IP, e.g. `134.209.190.84`                          |
+| `DEPLOY_USER`        | SSH user, e.g. `root`                                              |
+| `DEPLOY_SSH_KEY`     | **Private** SSH key (PEM) whose public half is in the droplet's `~/.ssh/authorized_keys` |
+| `DEPLOY_PATH`        | Directory on the droplet holding `docker-compose.prod.yml`, e.g. `/root/oasis` |
 
-### Variables
+### Variables (optional)
 | Name           | Value                                                                 |
 | -------------- | --------------------------------------------------------------------- |
-| `VITE_API_URL` | Production API base URL baked into the frontend bundle, e.g. `https://api.oasismassagewellness.com` |
+| `VITE_API_URL` | **Leave unset.** Single-domain deploy: nginx routes `/api/` to the backend, so the SPA uses relative URLs. Only set it if the API ever moves to a different domain. |
 
-> The frontend is a static Vite build, so `VITE_API_URL` is compiled in at
-> **build time**. If it's not set, the frontend will fall back to
-> `http://127.0.0.1:8000`, which won't work in production.
+## Generating the deploy SSH key
 
-## Pulling the images
+On your machine (or the droplet), create a dedicated key for CI:
 
 ```bash
-docker pull seyram11/oasis-frontend:latest
-docker pull seyram11/oasis-backend:latest
+ssh-keygen -t ed25519 -C "github-actions" -f deploy_key -N ""
+# Add the PUBLIC key to the droplet:
+ssh-copy-id -i deploy_key.pub root@134.209.190.84
+#   (or append deploy_key.pub to /root/.ssh/authorized_keys on the droplet)
+# Put the PRIVATE key (contents of deploy_key) into the DEPLOY_SSH_KEY secret.
+```
+
+The droplet must already have `docker-compose.prod.yml`, `Caddyfile`, and `.env`
+in `DEPLOY_PATH` (set up once during the initial deploy).
+
+## Manual pull (if not using auto-deploy)
+
+```bash
+cd /root/oasis
+docker compose -f docker-compose.prod.yml pull
+docker compose -f docker-compose.prod.yml up -d
 ```
