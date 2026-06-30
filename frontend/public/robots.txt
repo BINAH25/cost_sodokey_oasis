@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Keep the admin/API out of search results
+Disallow: /admin/
+Disallow: /api/
+
+Sitemap: https://oasismassagewellness.com/sitemap.xml

@@ -117,7 +117,7 @@ export default function BookingModal({ isOpen, onClose }: Props) {
         {/* Header */}
         <div className="sticky top-0 z-10 bg-oasis-base/95 backdrop-blur-sm border-b border-oasis-light/10 flex items-center justify-between px-6 py-5 rounded-t-2xl">
           <div className="flex items-center gap-3">
-            <img src="/oasis-logo.png" alt="Oasis" className="h-12 w-auto object-contain" />
+            <img src="/oasis-logo.webp" alt="Oasis" className="h-12 w-auto object-contain" />
             <div>
               <p className="text-oasis-gold text-xs uppercase tracking-[0.3em] font-semibold">
                 Oasis Wellness

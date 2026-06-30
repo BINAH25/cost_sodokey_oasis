@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2">
             <Link to="/" className="inline-flex mb-4">
-              <img src="/oasis-logo.png" alt="Oasis Massage & Wellness" className="h-16 w-auto object-contain" />
+              <img src="/oasis-logo.webp" alt="Oasis Massage & Wellness" className="h-16 w-auto object-contain" />
             </Link>
             <p className="text-oasis-gold text-xs uppercase tracking-[0.25em] font-semibold mt-1">
               Relax &bull; Renew &bull; Restore &bull; Revive

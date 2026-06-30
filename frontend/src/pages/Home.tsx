@@ -186,7 +186,7 @@ export default function Home() {
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-oasis-gold/10 blur-[100px]" />
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <div className="animate-fade-in mb-8 flex justify-center">
-            <img src="/oasis-logo.png" alt="Oasis Massage & Wellness" className="h-32 w-auto object-contain drop-shadow-lg" />
+            <img src="/oasis-logo.webp" alt="Oasis Massage & Wellness" width="128" height="128" fetchPriority="high" className="h-32 w-auto object-contain drop-shadow-lg" />
           </div>
           <p className="animate-fade-in-up text-oasis-gold text-sm uppercase tracking-[0.4em] font-semibold mb-5">
             Relax &bull; Renew &bull; Restore &bull; Revive
@@ -292,7 +292,7 @@ export default function Home() {
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-xl bg-oasis-gold/10 border border-oasis-gold/20 backdrop-blur-sm flex items-center justify-center overflow-hidden">
-                <img src="/oasis-logo.png" alt="Oasis" className="w-full h-full object-contain p-2" />
+                <img src="/oasis-logo.webp" alt="Oasis" className="w-full h-full object-contain p-2" />
               </div>
             </div>
           </div>

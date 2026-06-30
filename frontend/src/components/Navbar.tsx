@@ -43,7 +43,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center group">
             <img
-              src="/oasis-logo.png"
+              src="/oasis-logo.webp"
               alt="Oasis Massage & Wellness"
               className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
