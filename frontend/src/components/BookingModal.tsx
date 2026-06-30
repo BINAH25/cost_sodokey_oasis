@@ -3,10 +3,14 @@ import { X, CheckCircle, Loader2, AlertCircle, Home, Building2 } from 'lucide-re
 import { createAppointment, ApiError } from '../lib/api';
 
 const SERVICE_OPTIONS = [
-  'Relaxation Massage',
+  'Swedish Massage Therapy',
   'Deep Tissue Massage',
-  'Meridian Therapy',
-  'Oasis Signature Experience',
+  'Trigger Point Therapy',
+  'Full Body Therapeutic Massage',
+  'Meridian Balance Therapy',
+  'FOHOW Meridian Wellness Session',
+  'The Oasis Signature Experience',
+  'Executive Recovery Session',
 ];
 
 const LOCATION_OPTIONS = [

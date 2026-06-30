@@ -236,10 +236,14 @@ export default function Contact() {
                       className="w-full bg-oasis-dark/60 border border-oasis-light/15 rounded-lg px-4 py-3 text-white/70 text-sm focus:outline-none focus:border-oasis-gold/40 transition-colors appearance-none"
                     >
                       <option value="">Select a service</option>
-                      <option value="Relaxation Massage">Relaxation Massage</option>
+                      <option value="Swedish Massage Therapy">Swedish Massage Therapy</option>
                       <option value="Deep Tissue Massage">Deep Tissue Massage</option>
-                      <option value="Meridian Therapy">Meridian Therapy</option>
-                      <option value="Oasis Signature Experience">Oasis Signature Experience</option>
+                      <option value="Trigger Point Therapy">Trigger Point Therapy</option>
+                      <option value="Full Body Therapeutic Massage">Full Body Therapeutic Massage</option>
+                      <option value="Meridian Balance Therapy">Meridian Balance Therapy</option>
+                      <option value="FOHOW Meridian Wellness Session">FOHOW Meridian Wellness Session</option>
+                      <option value="The Oasis Signature Experience">The Oasis Signature Experience</option>
+                      <option value="Executive Recovery Session">Executive Recovery Session</option>
                     </select>
                   </div>
                   <div>
