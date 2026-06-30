@@ -3,6 +3,44 @@ import { Award, Heart, Eye, Globe, ArrowRight, CheckCircle, Target, Compass } fr
 import SectionTitle from '../components/SectionTitle';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
+const story = [
+  {
+    title: 'Why I Chose Massage Therapy',
+    subtitle: 'A Calling to Restore Wellness',
+    image: '/article_one.jpeg',
+    paragraphs: [
+      'For many years, I have watched people around me struggle with stress, physical discomfort, fatigue, and the demands of everyday life. Too often, people wait until their health has significantly declined before seeking help, while overlooking the importance of caring for their bodies along the way.',
+      'This realization inspired me to begin a journey into professional massage therapy and holistic wellness.',
+      'As I continued my studies, I became fascinated by the principles of Traditional Chinese Medicine (TCM), particularly the concept of the body’s meridian system. These pathways have been used for centuries as a framework for understanding how different parts of the body are connected and how supporting the body’s natural balance can contribute to overall well-being.',
+      'I believe that every person deserves the opportunity to slow down, reconnect with their body, and experience the benefits of intentional wellness care. Through professional massage therapy—including Swedish Massage, Deep Tissue Massage, Trigger Point Therapy, and Meridian Wellness techniques—I strive to help my clients reduce stress, ease muscle tension, improve circulation, and support their body’s natural ability to restore balance.',
+    ],
+  },
+  {
+    title: 'Why I Studied Meridian Wellness',
+    subtitle: 'A Personal Journey That Became a Lifelong Mission',
+    image: '/article_two.jpeg',
+    paragraphs: [
+      'My decision to study Meridian Wellness was deeply personal. Several years ago, I experienced recurring health challenges that required frequent medical attention. Those experiences led me to ask an important question: could I better understand my body and take a more proactive approach to my overall wellness?',
+      'As I searched for answers, I discovered the importance of regular physical activity and healthy lifestyle habits. My journey of learning eventually introduced me to Traditional Chinese Medicine (TCM), one of the world’s oldest systems of holistic wellness.',
+      'The philosophy of TCM fascinated me. It emphasizes balance, healthy living, and understanding the body as an interconnected whole. I became especially interested in the meridian system, which TCM describes as a network of pathways that supports the body’s natural balance.',
+      'The more I studied, the more I realized that wellness is not only about responding to illness—it is also about caring for the body consistently through healthy habits, relaxation, movement, and mindful living. As I applied these principles in my own life, I experienced positive changes that inspired me to pursue professional training, combining traditional wellness principles with modern therapeutic massage techniques.',
+      'For me, Meridian Wellness is not simply a technique—it is a lifelong commitment to learning, personal growth, and helping others make wellness an intentional part of their lives.',
+    ],
+  },
+  {
+    title: 'Why Oasis Exists',
+    subtitle: 'A Sanctuary in the Midst of Life’s Demands',
+    image: '/article_three.jpeg',
+    paragraphs: [
+      'Every day, I see people carrying the weight of modern life. They work long hours, sleep too little, eat on the run, experience constant stress, and rarely take time to care for their own well-being—until exhaustion becomes normal and self-care becomes an afterthought.',
+      'As I reflected on this reality, one image continually came to mind. A desert. Not a literal desert, but a place where people feel drained, overwhelmed, and disconnected from the balance their bodies and minds need.',
+      'In the middle of every desert, there is something extraordinary. There is an oasis—a place of refreshment, of rest, where strength is restored before the journey continues. That is the vision behind Oasis Massage & Wellness.',
+      'We exist to be that place of renewal. A sanctuary where people can step away from the pressures of daily life and invest in their well-being through professional massage therapy, meridian wellness practices, and holistic care. Our goal is not simply to provide a massage session—it is to create an experience that helps every client feel calmer, lighter, and better prepared to face the demands of life.',
+      'Because everyone deserves a place to pause, recover, and continue life’s journey with renewed strength. Welcome to Oasis — your sanctuary for relaxation and wellness.',
+    ],
+  },
+];
+
 const specializations = [
   'Swedish Massage',
   'Deep Tissue Massage',
@@ -57,7 +95,7 @@ export default function About() {
           <div className="animate-on-scroll">
             <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-oasis-base to-oasis-deep overflow-hidden border border-oasis-light/10">
               <img
-                src="/founder.jpeg"
+                src="/WhatsApp_Image_2026-06-10_at_16.38.37_(2).jpeg"
                 alt="Simon Cost Sodokey"
                 className="w-full h-full object-cover object-center"
               />
@@ -123,8 +161,52 @@ export default function About() {
         </div>
       </section>
 
-      {/* Highlights */}
+      {/* My Story */}
       <section className="bg-oasis-deep section-padding">
+        <div className="max-w-6xl mx-auto">
+          <SectionTitle subtitle="My Story" title="The Heart Behind Oasis" />
+          <div className="space-y-20 lg:space-y-28">
+            {story.map((article, i) => (
+              <div
+                key={article.title}
+                className={`animate-on-scroll grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${
+                  i % 2 !== 0 ? 'lg:[direction:rtl]' : ''
+                }`}
+              >
+                <div className={i % 2 !== 0 ? 'lg:[direction:ltr]' : ''}>
+                  <div className="aspect-[3/4] rounded-2xl overflow-hidden border border-oasis-light/10 bg-gradient-to-br from-oasis-base to-oasis-deep">
+                    <img
+                      src={article.image}
+                      alt={`Simon Cost Sodokey — ${article.title}`}
+                      loading="lazy"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                </div>
+                <div className={i % 2 !== 0 ? 'lg:[direction:ltr]' : ''}>
+                  <h3 className="font-display text-2xl md:text-3xl font-semibold text-white leading-tight">
+                    {article.title}
+                  </h3>
+                  <p className="text-oasis-gold/80 text-sm font-medium mt-2">
+                    {article.subtitle}
+                  </p>
+                  <div className="gold-divider !ml-0 mt-4" />
+                  <div className="mt-6 space-y-4">
+                    {article.paragraphs.map((p, j) => (
+                      <p key={j} className="text-white/60 text-base leading-relaxed text-justify">
+                        {p}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Highlights */}
+      <section className="bg-oasis-dark section-padding">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {highlights.map((item, i) => (

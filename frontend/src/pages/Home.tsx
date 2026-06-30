@@ -191,12 +191,15 @@ export default function Home() {
           <p className="animate-fade-in-up text-oasis-gold text-sm uppercase tracking-[0.4em] font-semibold mb-5">
             Relax &bull; Renew &bull; Restore &bull; Revive
           </p>
-          <h1 className="animate-fade-in-up font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-wide leading-[1.05]">
-            Find <span className="text-gradient-gold">Calm</span> Again.
+          <h1 className="animate-fade-in-up font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-wide leading-[1.08]">
+            Restore Balance.
+            <br />
+            Reclaim Your Health.
+            <br />
+            <span className="text-gradient-gold">Renew Your Life.</span>
           </h1>
           <p className="animate-fade-in-up [animation-delay:200ms] mt-6 text-lg md:text-xl text-white/70 font-light max-w-2xl mx-auto">
-            Experience the perfect balance of relaxation, recovery, and renewal.
-            Professional massage therapy and meridian wellness in the heart of Accra.
+            Luxury Massage Therapy &bull; Meridian Wellness &bull; Therapeutic Recovery
           </p>
           <div className="animate-fade-in-up [animation-delay:400ms] mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-white/60">
             <span>Certified Massage Therapist</span>
@@ -225,6 +228,29 @@ export default function Home() {
           <div className="w-6 h-10 rounded-full border border-white/20 flex items-start justify-center p-1.5">
             <div className="w-1.5 h-3 rounded-full bg-oasis-gold/60 animate-shimmer" />
           </div>
+        </div>
+      </section>
+
+      {/* Welcome to Oasis */}
+      <section className="bg-oasis-deep section-padding">
+        <div className="max-w-3xl mx-auto text-center animate-on-scroll">
+          <span className="text-oasis-gold text-xs uppercase tracking-[0.3em] font-semibold">
+            Welcome to Oasis
+          </span>
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white mt-3 leading-tight">
+            Not Just Another
+            <br />
+            <span className="text-gradient-gold">Massage Center</span>
+          </h2>
+          <div className="gold-divider mt-4" />
+          <p className="text-white/60 text-lg leading-relaxed mt-6">
+            A sanctuary where therapeutic touch meets holistic wellness.
+          </p>
+          <p className="text-white/60 text-base leading-relaxed mt-4">
+            Whether you&rsquo;re seeking stress relief, muscle recovery, or a moment of
+            peace, every session is thoughtfully designed to help you relax, renew,
+            restore, and revive.
+          </p>
         </div>
       </section>
 
@@ -260,7 +286,7 @@ export default function Home() {
             <div className="relative">
               <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-oasis-base to-oasis-deep overflow-hidden border border-oasis-light/10">
                 <img
-                  src="/founder.jpeg"
+                  src="/WhatsApp_Image_2026-06-10_at_16.38.37_(2).jpeg"
                   alt="Simon Cost Sodokey - Founder"
                   className="w-full h-full object-cover object-center"
                 />
@@ -462,27 +488,34 @@ export default function Home() {
             title="Your Path to Complete Wellness"
             description="Four pillars that form the foundation of every Oasis experience."
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             {pillars.map((pillar, i) => (
               <div
                 key={pillar.title}
-                className="animate-on-scroll card-oasis rounded-2xl p-8 text-center group transition-all duration-500 hover:-translate-y-2"
-                style={{ transitionDelay: `${i * 100}ms` }}
+                className="animate-on-scroll text-center group"
+                style={{ transitionDelay: `${i * 120}ms` }}
               >
-                <div className="w-36 h-24 mx-auto mb-2 transition-transform duration-300 group-hover:scale-110">
+                {/* Large luxury icon in a gold ring */}
+                <div className="relative mx-auto mb-7 w-40 h-40 flex items-center justify-center">
+                  <div className="absolute inset-0 rounded-full border border-oasis-gold/25 bg-oasis-gold/[0.04] transition-all duration-500 group-hover:border-oasis-gold/50 group-hover:bg-oasis-gold/[0.08]" />
+                  <div className="absolute inset-3 rounded-full border border-oasis-gold/10" />
                   <img
                     src={pillar.image}
                     alt={pillar.title}
-                    className="w-full h-full object-contain drop-shadow-lg"
+                    className="relative w-28 h-28 object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-110"
                   />
+                  <span className="absolute -top-1 right-2 font-display text-oasis-gold/40 text-lg">
+                    0{i + 1}
+                  </span>
                 </div>
-                <h3 className="font-display text-xl font-semibold text-white mb-1">
+                <h3 className="font-display text-2xl md:text-3xl font-bold text-white tracking-wide mb-2">
                   {pillar.title}
                 </h3>
-                <p className="text-oasis-gold text-sm font-medium mb-3">
+                <div className="w-10 h-px bg-oasis-gold/50 mx-auto mb-3" />
+                <p className="text-oasis-gold text-sm uppercase tracking-[0.15em] font-medium mb-3">
                   {pillar.subtitle}
                 </p>
-                <p className="text-white/50 text-sm leading-relaxed">
+                <p className="text-white/50 text-sm leading-relaxed max-w-[15rem] mx-auto">
                   {pillar.description}
                 </p>
               </div>

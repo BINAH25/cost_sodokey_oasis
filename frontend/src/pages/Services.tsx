@@ -17,6 +17,7 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 const services = [
   {
     icon: Leaf,
+    category: 'Therapeutic Massage',
     title: 'Swedish Massage Therapy',
     tagline: 'Unwind Your Mind',
     duration: '30 / 60 / 90 min',
@@ -33,6 +34,7 @@ const services = [
   },
   {
     icon: Sparkles,
+    category: 'Therapeutic Massage',
     title: 'Deep Tissue Massage',
     tagline: 'Refresh Your Body',
     duration: '30 / 60 / 90 min',
@@ -49,6 +51,7 @@ const services = [
   },
   {
     icon: Sun,
+    category: 'Therapeutic Massage',
     title: 'Trigger Point Therapy',
     tagline: 'Release the Tension',
     duration: '30 / 60 min',
@@ -65,6 +68,7 @@ const services = [
   },
   {
     icon: Heart,
+    category: 'Therapeutic Massage',
     title: 'Full Body Therapeutic Massage',
     tagline: 'Restore Your Whole Self',
     duration: '90 min',
@@ -81,6 +85,7 @@ const services = [
   },
   {
     icon: Droplets,
+    category: 'Meridian Wellness',
     title: 'Meridian Balance Therapy',
     tagline: 'Rebalance Your Energy',
     duration: '60 / 90 min',
@@ -97,6 +102,7 @@ const services = [
   },
   {
     icon: Activity,
+    category: 'Meridian Wellness',
     title: 'FOHOW Meridian Wellness Session',
     tagline: 'Modern Wellness Technology',
     duration: '30 / 60 min',
@@ -116,6 +122,7 @@ const services = [
   },
   {
     icon: Star,
+    category: 'Premium Experiences',
     title: 'The Oasis Signature Experience',
     tagline: 'Revitalize Your Life',
     duration: '90 min',
@@ -131,7 +138,27 @@ const services = [
     pillarColor: 'text-orange-400',
     popular: true,
   },
+  {
+    icon: Activity,
+    category: 'Premium Experiences',
+    title: 'Executive Recovery Session',
+    tagline: 'Recovery for the Demanding Life',
+    duration: '90 min',
+    price: 'Price on consultation',
+    image: '/deeptissuemassage.jpg',
+    benefits: [
+      'Targeted deep tissue & trigger point work',
+      'Meridian wellness for energy balance',
+      'Stress and tension relief for busy professionals',
+      'Personalized recovery plan',
+    ],
+    pillar: 'RENEW',
+    pillarColor: 'text-amber-400',
+  },
 ];
+
+// Service categories in display order.
+const CATEGORIES = ['Therapeutic Massage', 'Meridian Wellness', 'Premium Experiences'];
 
 export default function Services() {
   const scrollRef = useScrollAnimation();
@@ -156,16 +183,28 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Services List */}
+      {/* Services List — grouped by category */}
       <section className="bg-oasis-dark section-padding">
-        <div className="max-w-6xl mx-auto space-y-16">
-          {services.map((service, i) => (
-            <div
-              key={service.title}
-              className={`animate-on-scroll grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${
-                i % 2 !== 0 ? 'lg:[direction:rtl]' : ''
-              }`}
-            >
+        <div className="max-w-6xl mx-auto space-y-20">
+          {CATEGORIES.map((category) => {
+            const items = services.filter((s) => s.category === category);
+            return (
+              <div key={category} className="space-y-16">
+                {/* Category heading */}
+                <div className="text-center animate-on-scroll">
+                  <span className="text-oasis-gold text-xs uppercase tracking-[0.3em] font-semibold">
+                    {category}
+                  </span>
+                  <div className="gold-divider mt-3" />
+                </div>
+
+                {items.map((service, i) => (
+                  <div
+                    key={service.title}
+                    className={`animate-on-scroll grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${
+                      i % 2 !== 0 ? 'lg:[direction:rtl]' : ''
+                    }`}
+                  >
               <div className={`relative ${i % 2 !== 0 ? 'lg:[direction:ltr]' : ''}`}>
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-oasis-light/10 bg-gradient-to-br from-oasis-base to-oasis-deep">
                   <img
@@ -228,8 +267,11 @@ export default function Services() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
-            </div>
-          ))}
+                  </div>
+                ))}
+              </div>
+            );
+          })}
         </div>
       </section>
 

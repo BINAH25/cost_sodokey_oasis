@@ -1,14 +1,15 @@
 import { useState, type FormEvent } from 'react';
-import { MapPin, Phone, Mail, MessageCircle, Clock, Send, Home, Building2, Loader2, AlertCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageCircle, Clock, Globe, Send, Home, Building2, Loader2, AlertCircle } from 'lucide-react';
 import SectionTitle from '../components/SectionTitle';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { createAppointment, ApiError } from '../lib/api';
 
 const contactInfo = [
-  { icon: MapPin, label: 'Location', value: 'Darkuman, opposite Sunflower School, Star Oil — Accra' },
+  { icon: MapPin, label: 'Location', value: 'Darkuman, opposite Sunflower School, near Star Oil — Accra' },
   { icon: Phone, label: 'Phone', value: '+233 24 324 8922', href: 'tel:+233243248922' },
   { icon: MessageCircle, label: 'WhatsApp', value: 'Chat with us on WhatsApp', href: 'https://wa.me/233243248922' },
   { icon: Mail, label: 'Email', value: 'Infooasismassagewellness@gmail.com', href: 'mailto:Infooasismassagewellness@gmail.com' },
+  { icon: Globe, label: 'Website', value: 'oasismassagewellness.com', href: 'https://oasismassagewellness.com' },
   { icon: Clock, label: 'Hours', value: 'Mon–Sat: 9am – 7pm' },
 ];
 
