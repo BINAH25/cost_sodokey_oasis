@@ -360,11 +360,11 @@ export default function Home() {
             title="A Glimpse Into Oasis"
             description="A look at our founder, our craft, and the credentials behind every session."
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Portrait photos */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[
-              { src: '/image1.jpeg', alt: 'Simon Cost Sodokey, Founder', caption: 'Simon Cost Sodokey, Founder', contain: false },
-              { src: '/image2.jpeg', alt: 'A therapeutic massage session at Oasis', caption: 'Therapeutic Care in Session', contain: false },
-              { src: '/cert.png', alt: 'Lucklife Primary Technician Certificate', caption: 'Certified Meridian Technician', contain: true },
+              { src: '/image1.jpeg', alt: 'Simon Cost Sodokey, Founder', caption: 'Simon Cost Sodokey, Founder' },
+              { src: '/image2.jpeg', alt: 'A therapeutic massage session at Oasis', caption: 'Therapeutic Care in Session' },
             ].map((img, i) => (
               <div
                 key={img.src}
@@ -375,9 +375,31 @@ export default function Home() {
                   src={img.src}
                   alt={img.alt}
                   loading="lazy"
-                  className={`w-full h-full transition-transform duration-700 group-hover:scale-105 ${
-                    img.contain ? 'object-contain p-4' : 'object-cover'
-                  }`}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-oasis-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                  <p className="text-white text-sm font-medium">{img.caption}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Landscape certificates */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+            {[
+              { src: '/cert.png', alt: 'Lucklife Primary Technician Certificate', caption: 'Certified Meridian Technician' },
+              { src: '/cert_2.jpeg', alt: 'Professional massage therapy certificate', caption: 'Certified Massage Therapist' },
+            ].map((img, i) => (
+              <div
+                key={img.src}
+                className="animate-on-scroll group relative aspect-[4/3] rounded-2xl overflow-hidden border border-oasis-light/10 bg-gradient-to-br from-oasis-base to-oasis-deep"
+                style={{ transitionDelay: `${i * 100}ms` }}
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  loading="lazy"
+                  className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-oasis-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
