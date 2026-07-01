@@ -161,6 +161,26 @@ export default function About() {
         </div>
       </section>
 
+      {/* Founder's Quote */}
+      <section className="relative bg-gradient-oasis border-y border-oasis-gold/10 py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-oasis-gold/5" />
+        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+          <blockquote className="animate-on-scroll">
+            <p className="font-display text-2xl md:text-3xl lg:text-4xl font-medium text-white leading-snug">
+              “Wellness is not something we wait to regain after illness—it is
+              something we cultivate every day.”
+            </p>
+          </blockquote>
+          <div className="gold-divider mt-8" />
+          <p className="animate-on-scroll mt-6 text-white font-display text-lg font-semibold">
+            Simon Cost Sodokey
+          </p>
+          <p className="text-oasis-gold/80 text-xs uppercase tracking-[0.25em] font-semibold mt-1">
+            Founder &amp; Lead Therapist
+          </p>
+        </div>
+      </section>
+
       {/* My Story */}
       <section className="bg-oasis-deep section-padding">
         <div className="max-w-6xl mx-auto">

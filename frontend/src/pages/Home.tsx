@@ -388,7 +388,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
             {[
               { src: '/cert.png', alt: 'Lucklife Primary Technician Certificate', caption: 'Certified Meridian Technician' },
-              { src: '/cert_2.jpeg', alt: 'Professional massage therapy certificate', caption: 'Certified Massage Therapist' },
+              { src: '/cert_two.jpeg', alt: 'Professional massage therapy certificate', caption: 'Certified Massage Therapist' },
             ].map((img, i) => (
               <div
                 key={img.src}
